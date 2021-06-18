@@ -1,0 +1,39 @@
+---
+controller_ova: /home/matt/minio/vmware-products/controller-20.1.3-9085.ova
+vcenter_ip: "192.168.0.113"
+vcenter_username: administrator@vsphere.local
+vcenter_password: "{{ lookup('env', 'VCENTER_PASSWORD') }}"
+vcenter_datacenter: Home
+vcenter_cluster: Physical
+vcenter_datastore: NVME
+
+ntp_server: "192.168.0.1"
+dns_server: "192.168.0.1"
+
+controller_ip: "192.168.1.31"
+controller_netmask: "22"
+controller_gateway: "192.168.0.1"
+controller_port_group: Net1
+controller_ssh_public_key: "{{ lookup('env', 'SSH_PUBLIC_KEY') }}"
+controller_default_password: "{{ lookup('env', 'AVI_DEFAULT_PW') }}"  # From download site
+controller_username: admin
+controller_password: "VMware1!"
+api_version: "20.1.2"
+cloud_vcenter_username: administrator@vsphere.local
+cloud_vcenter_password: VMware1!
+cloud_vcenter_url: 192.168.1.30
+cloud_vcenter_datacenter: Lab
+
+se_vcenter_cluster: compute
+se_management_port_group: vm-network
+se_management_network_cidr: 192.168.0.0/22
+se_management_network_range: 192.168.1.32-192.168.1.37
+se_management_network_gateway: 192.168.0.1
+se_vip_port_group: vip-pg
+se_vip_network_cidr: 172.18.11.0/24
+se_vip_network_range: 172.18.11.10-172.18.11.99
+se_backend_port_group: workload-pg
+se_backend_network_cidr: 172.18.10.0/24
+se_backend_network_range: 172.18.10.2-172.18.10.99
+
+dns_provider_domain_name: tkg.lab

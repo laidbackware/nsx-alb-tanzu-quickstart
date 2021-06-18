@@ -1,0 +1,15 @@
+---
+- name: Deploy VC and Hosts
+  hosts: localhost
+  gather_facts: false
+  collections:
+  - vmware.alb
+  vars:
+    avi_credentials:
+      controller: "{{ controller_ip }}"
+      username: "{{ controller_username }}"
+      password: "{{ controller_password }}"
+      api_version: "{{ api_version }}"
+  roles:
+    - role: deploy-controller
+    - role: configure-cloud
