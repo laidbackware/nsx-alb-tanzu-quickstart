@@ -1,4 +1,23 @@
 ---
+
+- name: Create a VMWare cloud with write access mode
+  avi_cloud:
+    avi_credentials: "{{ avi_credentials }}"
+    apic_mode: false
+    dhcp_enabled: true
+    enable_vip_static_routes: false
+    name: Default-Cloud
+    prefer_static_routes: false
+    vcenter_configuration:
+      datacenter: "{{ cloud_vcenter_datacenter }}"
+      management_network: /api/vimgrnwruntime/?name={{ se_management_port_group }}
+      password: "{{ cloud_vcenter_password }}"
+      privilege: WRITE_ACCESS
+      username: "{{ cloud_vcenter_username }}"
+      vcenter_url: "{{ cloud_vcenter_url }}"
+    vtype: CLOUD_VCENTER
+  register: cloud_config
+
 - name: Create a VMWare cloud with write access mode
   avi_cloud:
     avi_credentials: "{{ avi_credentials }}"
@@ -109,6 +128,11 @@
       privilege: WRITE_ACCESS
       username: administrator@vsphere.local
       vcenter_url: 192.168.1.30
+      management_ip_subnet:
+        ip_addr:
+          addr: "{{ se_management_network_cidr.split('/')[0] }}"
+          type: V4
+        mask: "{{ se_management_network_cidr.split('/')[1] }}"
     vtype: CLOUD_VCENTER
   register: cloud_config
 

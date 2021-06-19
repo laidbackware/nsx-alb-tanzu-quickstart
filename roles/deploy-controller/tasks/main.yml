@@ -114,3 +114,15 @@
     echo: false
     seconds: 15
   when: system_config_result.changed
+
+# Backup configuration currently broken
+- name: Example to create BackupConfiguration object
+  avi_backupconfiguration:
+    avi_credentials: "{{ avi_credentials }}"
+    # state: present
+    name: Backup-Configuration
+    backup_passphrase: VMware1!
+    upload_to_remote_host: false
+  register: backup
+
+- debug: msg="{{ backup }}"
