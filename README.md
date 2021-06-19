@@ -14,7 +14,7 @@ The 20.1.3 Avi OVA is required. This can be accessed via the [Tanzu Kubernetes G
 
 ## Environment Dependencies
 You will need a vSphere cluster under a vCenter running 6.7 or higher.<br/>
-Avi will expect a minimum of 3 networks:
+Avi Service Engines need to run in the same vSphere cluster as the Tanzu nodes and require 3 networks:
 - Management - This will host the Service Engine management interfaces.
 - VIP - This will host the Virtual Servers that TKG requests Avi to create.
 - Backend - This is the network that contains Tanzu nodes.
@@ -32,6 +32,8 @@ export SSH_PUBLIC_KEY='####'
 export VCENTER_PASSWORD='####'
 # This is the vCenter where your Avi Service Engines will be deployed.
 export CLOUD_VCENTER_PASSWORD='####'
+# This will be the password of the Avi Controller.
+export CONTROLLER_PASSWORD='####'
 ```
 Clone the example vars and fill in for your environment.<br/>
 Make sure to leave any lookup functions in place if you want to pick up the secrets from environment variables.

@@ -17,11 +17,11 @@ controller_port_group: Net1
 controller_ssh_public_key: "{{ lookup('env', 'SSH_PUBLIC_KEY') }}"
 controller_default_password: "{{ lookup('env', 'AVI_DEFAULT_PW') }}"  # From download site
 controller_username: admin
-controller_password: "{{ lookup('env', 'CLOUD_VCENTER_PASSWORD') }}"
+controller_password: "{{ lookup('env', 'CONTROLLER_PASSWORD') }}"
 api_version: "20.1.2"
 # The cloud vCenter will host the service engines and Tanzu clusters
 cloud_vcenter_username: administrator@vsphere.local
-cloud_vcenter_password: VMware1!
+cloud_vcenter_password: "{{ lookup('env', 'CLOUD_VCENTER_PASSWORD') }}"
 cloud_vcenter_url: 192.168.1.30
 cloud_vcenter_datacenter: Lab
 
