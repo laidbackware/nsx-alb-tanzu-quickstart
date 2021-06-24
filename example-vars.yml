@@ -35,9 +35,3 @@ se_management_network_gateway: 192.168.0.1
 se_vip_port_group: vip-pg
 se_vip_network_cidr: 172.18.11.0/24
 se_vip_network_range: 172.18.11.10-172.18.11.254
-# The backend network is the network containing TKC nodes
-se_backend_port_group: workload-pg
-se_backend_network_cidr: 172.18.10.0/24
-se_backend_network_range: 172.18.10.240-172.18.10.254
-
-dns_provider_domain_name: tkg.lab

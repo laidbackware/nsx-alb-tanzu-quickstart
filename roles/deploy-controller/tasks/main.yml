@@ -89,6 +89,7 @@
 - name: Basic Controller Config
   avi_systemconfiguration:
     avi_credentials: "{{ avi_credentials }}"
+    default_license_tier: ESSENTIALS
     email_configuration:
       smtp_type: SMTP_NONE
     global_tenant_config:
