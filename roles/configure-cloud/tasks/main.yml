@@ -143,4 +143,3 @@
               addr: "{{ se_vip_network_range.split('-')[1] }}"
               type: "V4"
   register: vip_network_result
-
