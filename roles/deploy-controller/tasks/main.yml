@@ -1,15 +1,15 @@
 ---
 - name: Deploy Avi Controller
   community.vmware.vmware_deploy_ovf:
-    hostname: "{{ vcenter_ip }}"
-    username: "{{ vcenter_username }}"
-    password: "{{ vcenter_password }}"
+    hostname: "{{ controller_vcenter_ip }}"
+    username: "{{ controller_vcenter_username }}"
+    password: "{{ controller_vcenter_password }}"
     validate_certs: false
-    name: "avi-controller"
-    datacenter: "{{ vcenter_datacenter }}"
+    name: "{{ controller_vm_name }}"
+    datacenter: "{{ controller_vcenter_datacenter }}"
     # folder: /SG1/vm
-    cluster: "{{ vcenter_cluster }}"
-    datastore: "{{ vcenter_datastore }}"
+    cluster: "{{ controller_vcenter_cluster }}"
+    datastore: "{{ controller_vcenter_datastore }}"
     disk_provisioning: "thin"
     networks:
       "Management": "{{ controller_port_group }}"
@@ -63,6 +63,15 @@
   register: access_test
   ignore_errors: true
 
+- fail:
+    msg:
+      - "The controller default password is empty"
+      - "If you are using environmental variables, check it is exported"
+  when: >
+    controller_default_password == "" and
+    "access_test.module_stderr is defined and
+    'Invalid credentials' in access_test.module_stderr"
+
 - name: Change admin default password
   avi_useraccount:
     controller: "{{ controller_ip }}"
@@ -70,7 +79,9 @@
     password: "{{ controller_password }}"
     api_version: "{{ api_version }}"
     old_password: "{{ controller_default_password }}"
-  when: "access_test.module_stderr is defined and 'Invalid credentials' in access_test.module_stderr"
+  when: >
+    "access_test.module_stderr is defined and
+    'Invalid credentials' in access_test.module_stderr"
 
 - name: Create a SSL Key and Certificate
   avi_sslkeyandcertificate:
