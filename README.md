@@ -5,7 +5,7 @@ These Roles are not for building production deployments and this repo is in no w
 ## Software Dependencies
 This process has been tested on a Linux system and should also work on Mac.<br/>
 Tested against Ansible 2.11 and Avi version 20.1.3.<br/>
-Install the dependencies once you have Ansible installed.
+Once you have Ansible installed, install the following:
 ```
 pip install requests
 ansible-galaxy collection install vmware.alb:21.1.1-beta4 --force
