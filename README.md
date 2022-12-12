@@ -1,16 +1,16 @@
 # NSX-ALB Tanzu Quickstart
-This repo contains Ansible Roles to deploy a minimum viable NSX Advanced Load Balancer (Avi) solution for VMware Tanzu Kubernetes Grid on vSphere.<br/>
+This repo contains Ansible Roles to deploy a minimum viable NSX Advanced Load Balancer (Avi) solution for VMware Tanzu Kubernetes Grid on vSphere.</br>
 These Roles are not for building production deployments and this repo is in no way associated with VMware.
 
 ## Software Dependencies
 This process has been tested on a Linux system and should also work on Mac.<br/>
-Tested against Ansible 2.11 and Avi version 20.1.3.<br/>
+Tested against Ansible 2.11 and Avi version 20.1.6.<br/>
 Once you have Ansible installed, install the following:
 ```
 pip install requests
-ansible-galaxy collection install vmware.alb:21.1.1-beta4 --force
+ansible-galaxy collection install vmware.alb --force
 ```
-The 20.1.3 Avi OVA is required. This can be accessed via the [Tanzu Kubernetes Grid download page](https://my.vmware.com/en/group/vmware/downloads/info/slug/infrastructure_operations_management/vmware_tanzu_kubernetes_grid/1_x).
+The 20.1.6 Avi OVA is required. This can be accessed via the [Tanzu Kubernetes Grid download page](https://my.vmware.com/en/group/vmware/downloads/info/slug/infrastructure_operations_management/vmware_tanzu_kubernetes_grid/1_x).
 
 ## Environment Dependencies
 You will need a vSphere cluster under a vCenter running 6.7 or higher.<br/>

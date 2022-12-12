@@ -37,7 +37,7 @@
 - name: Waiting to allow for cloud to configure
   pause:
     echo: false
-    seconds: 30
+    seconds: 45
   when: cloud_results.changed
 
 - name: Check to ensure that cloud is in a sync'd state
@@ -137,7 +137,7 @@
 - name: Wait for cloud to configure
   pause:
     echo: false
-    seconds: 30
+    seconds: 45
   when: cloud_results.changed
 
 - name: Update VIP network
