@@ -10,7 +10,7 @@ Once you have Ansible installed, install the following:
 pip install requests
 ansible-galaxy collection install vmware.alb --force
 ```
-The 20.1.6 Avi OVA is required. This can be accessed via the [Tanzu Kubernetes Grid download page](https://my.vmware.com/en/group/vmware/downloads/info/slug/infrastructure_operations_management/vmware_tanzu_kubernetes_grid/1_x).
+The 22.1.4 Avi OVA is required. This can be accessed via the [Tanzu Kubernetes Grid download page](https://my.vmware.com/en/group/vmware/downloads/info/slug/infrastructure_operations_management/vmware_tanzu_kubernetes_grid/2_x).
 
 ## Environment Dependencies
 You will need a vSphere cluster under a vCenter running 6.7 or higher.<br/>

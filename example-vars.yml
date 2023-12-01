@@ -1,12 +1,12 @@
 ---
-controller_ova: /home/matt/minio/vmware-products/controller-20.1.6-9132.ova
-api_version: "20.1.6"
+controller_ova: /home/matt/minio/vmware-products/controller-22.1.4-9196.ova
+api_version: "22.1.4"
 controller_username: admin
 controller_password: "{{ lookup('env', 'CONTROLLER_PASSWORD') }}"
 controller_ssh_public_key: "{{ lookup('env', 'SSH_PUBLIC_KEY') }}"
 controller_default_password: "{{ lookup('env', 'AVI_DEFAULT_PW') }}"  # From download site
 
-controller_ip: "192.168.1.31"
+controller_ip: "192.168.1.41"
 controller_netmask: "22"
 controller_gateway: "192.168.0.1"
 ntp_server: "192.168.0.1"
@@ -18,23 +18,29 @@ controller_vcenter_password: "{{ lookup('env', 'VCENTER_PASSWORD') }}"
 controller_vcenter_datacenter: Home
 controller_vcenter_cluster: Physical
 controller_vcenter_datastore: NVME
-controller_port_group: Net1
+controller_port_group: vm-network
 controller_vm_name: avi-controller
 
 # The cloud vCenter will host the service engines and Tanzu clusters
+cloud_name: Default-Cloud
 cloud_vcenter_username: administrator@vsphere.local
 cloud_vcenter_password: "{{ lookup('env', 'CLOUD_VCENTER_PASSWORD') }}"
 cloud_vcenter_url: "192.168.1.40"
 cloud_vcenter_datacenter: Lab
+# Ensure all non vip/SE networks are set to ignore discovered subnets.
+# This allows for multiple port groups for the same subnet/VLAN, for example to allow for different security flags.
+cloud_exclude_other_networks: true
 
+se_group_name: Default-Group
 # vCenter cluster to host Service Engines
 se_vcenter_cluster: compute
 # The management network will host he service engine management interface
 se_management_port_group: vm-network
 se_management_network_cidr: 192.168.0.0/22
-se_management_network_range: 192.168.1.32-192.168.1.37
+se_management_network_range: 192.168.1.42-192.168.1.43
 se_management_network_gateway: 192.168.0.1
 # The vip network will contain the virtual servers created by Avi
-se_vip_port_group: vip-pg
-se_vip_network_cidr: 172.18.11.0/24
-se_vip_network_range: 172.18.11.10-172.18.11.254
+se_vip_port_group: workload-pg
+se_vip_network_cidr: 172.19.10.0/24
+se_vip_network_range: 172.19.10.128-172.19.10.254
+se_vip_network_gateway: 172.19.10.1
